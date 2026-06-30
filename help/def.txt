@@ -1,0 +1,60 @@
+# Tokens
+
+
+#check config.md for things like FEATURE_STARTER
+
+
+# 'Parsed' tokens
+
+Program         = (Feature?   , EOL)*
+                , (Symbol?    , EOL)*
+                , (Statement? , EOL)*
+                , AnyExpr     , EOL
+                , EOF_TOK     ;
+
+EOL             = (COMMENT_STARTER , Text)? , NEXTLINE ;
+
+Feature         = FEATURE_STARTER , NegatableIDSet?, LeftExpr , STAR? , IDSet ;
+Symbol          = LeftExpr , COLON , IDList ;
+
+Statement       = ClassDec | Assertion ;
+
+ClassDec        = LeftExpr , EQ , AnyExpr ;
+
+Assertion       = AT , AssertionExpr ;
+AssertionExpr   = LBRACK , AnyExpr , COMMA , AnyExpr , RBRACK ;
+
+
+AnyExpr         = SetExpr | ID ;
+
+SetExpr         = LBRACK , ListExpr , RBRACK
+                | LPAREN , ListExpr , RPAREN
+                | LPAREN , WeightableExpr , RPAREN;
+                | AnyExpr , QUESTION
+                | AnyExpr , PLUS , NUMBER
+                | SetExpr , MINUS , SetExpr
+                | AT , NegatableIDSet
+                | ClassExpr ;
+
+IDSet           = LBRACK , IDExpr , RBRACK ;
+NegatableIDSet  = LBRACK , NegatableIDExpr , RBRACK ;
+
+
+ListExpr        = AnyExpr , (GT , AnyExpr)*
+                | WeightableExpr , (COMMA , WeightableExpr)*
+                | AnyExpr , (PIPE , AnyExpr)*
+                | SetExpr , (AMP , SetExpr)*
+                | AnyExpr ;
+
+IDExpr          = ID , (COMMA , ID)* ;
+NegatableIDExpr = NegatableID, (COMMA , NegatableID)* ;
+
+
+WeightableExpr  = AnyExpr , (COLON, NUMBER)? ;
+
+
+NegatableID     = BANG?, FeatureID ;
+FeatureID     = ID ;
+LeftID        = ID ;
+SimpleID      = ID ;
+ClassID       = AT , ID ;

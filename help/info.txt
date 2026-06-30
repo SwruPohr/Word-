@@ -1,0 +1,15 @@
+.* strictly means you do not have to save the characters.
+
+1.
+[p !_ j], or constraints not defined yet
+- I think it should be [p ^ _j] lest [p ! a b c d e f g hi j k l m n o p _ q] do arbitrary lookahead.
+
+">" - Commutative, not Associative
+"," - Commutative, Associative, Weightable
+"|" - Commutative, not Associative
+"-" - not Commutative, not Associative, Set Only
+"&" - Commutative, Associative, Set Only
+"%" - Commutative, Associative, Set Only
+
+(A-B)-C = A-(B,C).
+A-(B-C) = (A-B),(A&C).

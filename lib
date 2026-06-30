@@ -1,0 +1,47 @@
+//
+// Created by Swarup on 2026-06-18.
+//
+
+#ifndef WORDMAKE_COMMON_H
+#define WORDMAKE_COMMON_H
+
+//#define PRINT_COMMENTS
+#define INITIAL_TOKENS_CAP 128
+
+#define OK 0
+#define EOF_OK (-1)
+
+
+#define ALLOC_ERR (-1)
+#define EOF_ERR (-2)
+#define READ_ERR (-3)
+#define UNKNOWN_TOKEN_ERR (-4)
+#define ARG_ERR (-5)
+#define NUMBER_ERR (-6)
+
+#define uint32nz_t uint32_t
+
+//#define PRINT_LOG
+
+
+static inline int isWhitespace(char c) {
+    return (c == ' ' || (c >= '\t' && c <= '\r'));
+} // non ascii whitespace
+
+
+
+static inline int isLF(char c) {
+    return (c == '\n');
+}
+
+static inline int isDigit(char c) {
+    return (c >= '0' && c <= '9'); // no unicode number, just these
+}
+
+static inline int isAlpha(char c) {
+    return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+
+
+
+#endif //WORDMAKE_COMMON_H

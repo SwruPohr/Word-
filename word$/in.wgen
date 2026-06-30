@@ -1,0 +1,7 @@
+# Program 1
+FOO;
+BAR = [A,B,C] ;
+@ [X,Y] ;
+$[!B,C] FOO [A,B]
+
+FOO
