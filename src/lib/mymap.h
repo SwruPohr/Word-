@@ -1,12 +1,12 @@
-#ifndef MYMAP_H
-#define MYMAP_H
+#pragma once
+
 #include <stdint.h>
 
 
 
 typedef struct MyMap MyMap;
 
-enum { MyProt_Read = 1, MyProt_Write = 2 };
+enum { PROT_READ = 1, PROT_WRITE = 2 };
 
 static inline int  mymap_map_file(MyMap* m, const char* path_utf8, int prot);
 static inline void mymap_unmap(MyMap* m);
@@ -180,5 +180,3 @@ static inline void mymap_unmap(MyMap* m);
 #else
   #error "Unsupported platform"
 #endif
-
-#endif /* MYMAP_H */

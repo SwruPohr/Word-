@@ -20,6 +20,7 @@ Symbol          = LeftExpr , COLON , IDList ;
 Statement       = ClassDec | Assertion ;
 
 ClassDec        = LeftExpr , EQ , AnyExpr ;
+LeftExpr        = LeftID ;
 
 Assertion       = AT , AssertionExpr ;
 AssertionExpr   = LBRACK , AnyExpr , COMMA , AnyExpr , RBRACK ;
@@ -58,3 +59,5 @@ FeatureID     = ID ;
 LeftID        = ID ;
 SimpleID      = ID ;
 ClassID       = AT , ID ;
+
+ID = (LETTER)* (WHITESPACE) ;
